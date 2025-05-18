@@ -1,0 +1,75 @@
+# Smithery configuration file: https://smithery.ai/docs/build/project-config
+
+startCommand:
+  type: stdio
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({ command: 'node', args: ['build/mcp-server.js'], env: {
+      NETWORK_PASSPHRASE: config.networkPassphrase,
+      RPC_URL: config.rpcUrl,
+      LAUNCHTUBE_URL: config.launchtubeUrl,
+      LAUNCHTUBE_JWT: config.launchtubeJwt,
+      MERCURY_URL: config.mercuryUrl,
+      MERCURY_JWT: config.mercuryJwt,
+      MERCURY_PROJECT_NAME: config.mercuryProjectName,
+      WALLET_WASM_HASH: config.walletWasmHash,
+      AGENT_KEYPAIR_FILE_PATH: config.agentKeypairFilePath,
+      USAGE_GUIDE_FILE_PATH: config.usageGuideFilePath
+     } })
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - networkPassphrase
+      - rpcUrl
+      - launchtubeUrl
+      - launchtubeJwt
+      - mercuryUrl
+      - mercuryJwt
+      - mercuryProjectName
+      - walletWasmHash
+      - agentKeypairFilePath
+      - usageGuideFilePath
+    properties:
+      networkPassphrase:
+        type: string
+        description: Stellar network passphrase (e.g., Test SDF Network ; September 2015)
+      rpcUrl:
+        type: string
+        description: Soroban RPC endpoint URL
+      launchtubeUrl:
+        type: string
+        description: Launchtube service URL for passkey integrations
+      launchtubeJwt:
+        type: string
+        description: JWT token for Launchtube
+      mercuryUrl:
+        type: string
+        description: Mercury Data API URL
+      mercuryJwt:
+        type: string
+        description: JWT token for Mercury Data
+      mercuryProjectName:
+        type: string
+        description: Mercury Data project name
+      walletWasmHash:
+        type: string
+        description: Hash of the wallet contract WASM
+      agentKeypairFilePath:
+        type: string
+        description: Path to the agent keypair file inside container
+      usageGuideFilePath:
+        type: string
+        description: Path to the usage guide markdown file inside container
+  exampleConfig:
+    networkPassphrase: Test SDF Network ; September 2015
+    rpcUrl: https://soroban-testnet.stellar.org
+    launchtubeUrl: https://testnet.launchtube.xyz
+    launchtubeJwt: eyJhbGciOiJIUzI1Ni...
+    mercuryUrl: https://api.mercurydata.app
+    mercuryJwt: eyJhbGciOi...
+    mercuryProjectName: project_name
+    walletWasmHash: a8860280cb9f9335b623f81a4e80e89a7920024275b177f2d4bffa6aa5fb5606
+    agentKeypairFilePath: /app/agent-keys.txt
+    usageGuideFilePath: /app/USAGE.md
