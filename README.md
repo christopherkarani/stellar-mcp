@@ -1,5 +1,7 @@
 # stellar-mcp
 
+[![smithery badge](https://smithery.ai/badge/@christopherkarani/stellar-mcp)](https://smithery.ai/server/@christopherkarani/stellar-mcp)
+
 A Model Context Protocol (MCP) server implementation for interacting with the Stellar blockchain network. This server enables AI agents and LLMs to perform Stellar blockchain operations through a standardized interface.
 
 ## What is MCP?
@@ -40,6 +42,14 @@ This MCP server implementation provides AI agents with direct access to Stellar 
 - A Stellar testnet account (for testing)
 
 ### Installation
+
+#### Installing via Smithery
+
+To install stellar-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@christopherkarani/stellar-mcp):
+
+```bash
+npx -y @smithery/cli install @christopherkarani/stellar-mcp --client claude
+```
 
 #### 1. From NPM (Recommended)
 
